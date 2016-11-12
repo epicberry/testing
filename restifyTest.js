@@ -1,13 +1,67 @@
 var restify = require('restify');
 
-function respond(req, res, next) {
-  res.send('hello ' + req.params.name);
+var testCases = [
+  {
+    "testCaseId" : "1",
+    "testCategory": "cat1",
+    "includeInExecution" : "true",
+    "description" : "",
+    "basic" : {
+      "browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
+      "url" : "http://www.google.com",
+    },
+    "steps" : {
+      "testQuery" : "github",
+    }
+  },
+  {
+    "testCaseId" : "2",
+    "testCategory": "cat1",
+    "includeInExecution" : "true",
+    "description" : "",
+    "basic" : {
+      "browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
+      "url" : "http://www.google.com",
+    },
+    "steps" : {
+      "testQuery" : "Param Testing",
+    }
+  },
+  {
+    "testCaseId" : "3",
+    "testCategory": "cat2",
+    "includeInExecution" : "false",
+    "description" : "",
+    "basic" : {
+      "browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
+      "url" : "http://www.google.com",
+    },
+    "steps" : {
+      "testQuery" : "one more time",
+    }
+  }
+];
+
+
+function getTestCaseData(req, res, next) {
+res.charSet('utf-8');
+  if(req.params.testCaseId=='all'){
+    res.send(testCases);
+  }
+  else {
+    var testCaseData = testCases.filter(function(t){return t.testCaseId == req.params.testCaseId;});
+    res.send(testCaseData);
+  }
   next();
 }
 
-var server = restify.createServer();
-server.get('/hello/:name', respond);
-server.head('/hello/:name', respond);
+var server = restify.createServer({
+  name: 'MyTestService'
+});
+server.get('/data/:testCaseId', getTestCaseData);
+server.head('/data/:testCaseId', getTestCaseData);
+
+//server.pre(restify.pre.userAgentConnection());
 
 server.listen(8082, function() {
   console.log('%s listening at %s', server.name, server.url);
