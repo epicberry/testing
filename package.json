@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
     "express": "^4.14.0",
     "node-horseman": "^3.2.0",
     "restify": "^4.2.0"
