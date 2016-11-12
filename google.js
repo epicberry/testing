@@ -4,6 +4,13 @@ var Horseman = require('node-horseman');
 //var testDataInstance = new testData();
 //console.log(testDataInstance.testCases);
 
+// JQuery.ajax({
+//   url: "http://localhost:8082/data/all",
+//   context: document.body
+// }).done(function() {
+//   console.log('done');
+// });
+
 var testCases = [
   {
     "testCaseId" : "1",

@@ -1,6 +1,6 @@
 var app = angular.module('paramsingh', []);
 
-app.controller('TestCaseController', function ($scope) {
+app.controller('TestCaseController', function ($scope, $http) {
 
 	$scope.search = "";
 	$scope.order = "testCaseId";
@@ -28,45 +28,101 @@ app.controller('TestCaseController', function ($scope) {
 		console.log(JSON.stringify(testCasesToBeRun));
 	};
 
-	$scope.testCases = [
-		{
-      "testCaseId" : "1",
-			"testCategory": "cat1",
-			"includeInExecution" : "true",
-			"description" : "",
-			"basic" : {
-				"browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
-	      "url" : "http://www.google.com",
-			},
-      "steps" : {
-				"testQuery" : "github",
-      }
-    },
-		{
-      "testCaseId" : "2",
-			"testCategory": "cat1",
-			"includeInExecution" : "true",
-			"description" : "",
-			"basic" : {
-				"browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
-	      "url" : "http://www.google.com",
-			},
-      "steps" : {
-				"testQuery" : "github",
-      }
-    },
-		{
-      "testCaseId" : "3",
-			"testCategory": "cat2",
-			"includeInExecution" : "false",
-			"description" : "",
-			"basic" : {
-				"browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
-	      "url" : "http://www.google.com",
-			},
-      "steps" : {
-				"testQuery" : "github",
-      }
-    },
-	]
-});
+	// Simple GET request example:
+$http({
+  method: 'GET',
+  url: 'http://localhost:8082/data/all'
+}).then(function successCallback(response) {
+    // this callback will be called asynchronously
+    // when the response is available
+		$scope.testCases = response.data;
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+			$scope.testCases = [
+				{
+		      "testCaseId" : "4",
+					"testCategory": "cat1",
+					"includeInExecution" : "true",
+					"description" : "",
+					"basic" : {
+						"browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
+			      "url" : "http://www.google.com",
+					},
+		      "steps" : {
+						"testQuery" : "github",
+		      }
+		    },
+				{
+		      "testCaseId" : "5",
+					"testCategory": "cat1",
+					"includeInExecution" : "true",
+					"description" : "",
+					"basic" : {
+						"browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
+			      "url" : "http://www.google.com",
+					},
+		      "steps" : {
+						"testQuery" : "github",
+		      }
+		    },
+				{
+		      "testCaseId" : "6",
+					"testCategory": "cat2",
+					"includeInExecution" : "false",
+					"description" : "",
+					"basic" : {
+						"browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
+			      "url" : "http://www.google.com",
+					},
+		      "steps" : {
+						"testQuery" : "github",
+		      }
+		    },
+			]
+		});
+
+  });
+
+// 	$scope.testCases = [
+// 		{
+//       "testCaseId" : "1",
+// 			"testCategory": "cat1",
+// 			"includeInExecution" : "true",
+// 			"description" : "",
+// 			"basic" : {
+// 				"browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
+// 	      "url" : "http://www.google.com",
+// 			},
+//       "steps" : {
+// 				"testQuery" : "github",
+//       }
+//     },
+// 		{
+//       "testCaseId" : "2",
+// 			"testCategory": "cat1",
+// 			"includeInExecution" : "true",
+// 			"description" : "",
+// 			"basic" : {
+// 				"browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
+// 	      "url" : "http://www.google.com",
+// 			},
+//       "steps" : {
+// 				"testQuery" : "github",
+//       }
+//     },
+// 		{
+//       "testCaseId" : "3",
+// 			"testCategory": "cat2",
+// 			"includeInExecution" : "false",
+// 			"description" : "",
+// 			"basic" : {
+// 				"browser" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0",
+// 	      "url" : "http://www.google.com",
+// 			},
+//       "steps" : {
+// 				"testQuery" : "github",
+//       }
+//     },
+// 	]
+// });
