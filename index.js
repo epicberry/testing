@@ -1,14 +1,10 @@
-var restify = require('restify');
+var express = require('express')
+var app = express()
 
-function respond(req, res, next) {
-  res.send('hello ' + req.params.name);
-  next();
-}
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})
 
-var server = restify.createServer();
-server.get('/hello/:name', respond);
-server.head('/hello/:name', respond);
-
-server.listen(8082, function() {
-  console.log('%s listening at %s', server.name, server.url);
-});
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!')
+})

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.14.0",
     "node-horseman": "^3.2.0",
     "restify": "^4.2.0"
   },
