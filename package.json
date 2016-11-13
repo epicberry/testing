@@ -23,5 +23,6 @@
   "bugs": {
     "url": "https://github.com/epicberry/testing/issues"
   },
-  "homepage": "https://github.com/epicberry/testing#readme"
+  "homepage": "https://github.com/epicberry/testing#readme",
+  "scripts": { "start": "node restifyTest.js"}
 }
